@@ -49,7 +49,12 @@ export default function GuestbookCard({
           alt="프로필"
           width={16}
           height={16}
-          style={{ borderRadius: '100px' }}
+          style={{
+            borderRadius: '100px',
+            width: '16px',
+            height: '16px',
+            objectFit: 'cover',
+          }}
         />
         <span
           className="caption"

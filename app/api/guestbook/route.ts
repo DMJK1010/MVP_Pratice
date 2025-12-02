@@ -1,8 +1,10 @@
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@/lib/supabase/server';
 import { NextResponse } from 'next/server';
 
 // GET - 방명록 목록 조회 (최신순)
 export async function GET() {
+  const supabase = await createClient();
+
   const { data, error } = await supabase
     .from('guestbook')
     .select('*')
@@ -17,8 +19,10 @@ export async function GET() {
 
 // POST - 방명록 작성
 export async function POST(request: Request) {
+  const supabase = await createClient();
+
   const body = await request.json();
-  const { user_name, content } = body;
+  const { user_name, profile_image, content } = body;
 
   if (!user_name || !content) {
     return NextResponse.json(
@@ -29,7 +33,7 @@ export async function POST(request: Request) {
 
   const { data, error } = await supabase
     .from('guestbook')
-    .insert({ user_name, content })
+    .insert({ user_name, profile_image, content })
     .select()
     .single();
 
