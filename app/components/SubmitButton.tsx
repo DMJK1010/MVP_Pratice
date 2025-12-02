@@ -19,10 +19,13 @@ export default function SubmitButton({
         alignItems: 'center',
         width: '36px',
         height: '36px',
+        minWidth: '36px',
+        minHeight: '36px',
         background: disabled ? 'var(--gray-02)' : 'var(--primary-blue)',
         borderRadius: '100px',
         border: 'none',
         cursor: disabled ? 'not-allowed' : 'pointer',
+        flexShrink: 0,
       }}
     >
       {/* Arrow Up Icon */}
